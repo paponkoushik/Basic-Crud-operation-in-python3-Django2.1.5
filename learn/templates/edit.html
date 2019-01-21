@@ -1,0 +1,41 @@
+{% extends 'layouts/application.html' %}
+
+{% block title %}Admin Dashboard{% endblock %}
+{% block breadcrumbs %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="#">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active">Overview</li>
+    </ol>
+{% endblock %}
+{% block chards %}
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Add Books</h5>
+                    <hr>
+                    <form action="/update-book/{{ edit_book.id }}">
+                        {%  csrf_token %}
+                        <div class="form-row">
+                           <div class="form-group col-md-6">
+                           <label for="inputEmail4">Title</label>
+                           <input type="text" class="form-control" value="{{ edit_book.title }}" name="title">
+                        </div>
+                        <div class="form-group col-md-6">
+                           <label for="inputPassword4">Price</label>
+                           <input type="number" class="form-control" value="{{ edit_book.price }}" name="price">
+                        </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputAddress">Author</label>
+                            <input type="text" class="form-control" value="{{ edit_book.author }}" name="author">
+                        </div>
+                        <input class="btn btn-primary" type="submit" value="Update">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

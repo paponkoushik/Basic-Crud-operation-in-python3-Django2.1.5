@@ -1,0 +1,49 @@
+{% extends 'layouts/application.html' %}
+
+{% block title %}Admin Dashboard{% endblock %}
+{% block breadcrumbs %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="#">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active">Overview</li>
+    </ol>
+{% endblock %}
+{% block chards %}
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Recent Orders</h5>
+                    <h6 class="card-subtitle mb-4 text-muted">Last 10 orders from your store</h6>
+                    <table class="table table-striped" width="100%" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th class="text-center">#</th>
+                            <th class="text-center">Title</th>
+                            <th class="text-center">Price</th>
+                            <th class="text-center">Author</th>
+                            <th class="text-center">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for book in books  %}
+                            <tr>
+                                <td class="text-center">{{ book.id }}</td>
+                                <td class="text-center">{{ book.title }}</td>
+                                <td class="text-center">{{ book.price }} Tk</td>
+                                <td class="text-center">{{ book.author }}</td>
+                                <td class="text-center">
+                                    <a class="btn btn-info" href="/edit/{{ book.id }}" title="Edit This?">Edit</a>
+                                    <a class="btn btn-danger" href="/delete/{{ book.id }}" title="Delete This?">Delete</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <a href="/add-book/" class="card-link btn btn-primary">Add Books</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
